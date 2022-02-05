@@ -9,7 +9,7 @@ Creates snippets to use in VScode as a DCS lua environment.
   - Land
 
 ## Instructions
-Put dcs-snippet-generator/dcs-snippet-generator/VScode/lua.json in C:Users/<ProfileName>/AppData/Roaming/Code/User/snippets/lua.json
+Put dcs-snippet-generator/dcs-snippet-generator/VScode/lua.json in C:Users/ProfileName/AppData/Roaming/Code/User/snippets/lua.json
 
 
   
