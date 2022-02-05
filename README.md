@@ -1,5 +1,5 @@
 # dcs-snippet-generator
-Creates snippets to use in VScode for the DCS lua environment. 
+Creates snippets to use in VScode as a DCS lua environment. 
 
 - Singletons
   - Atmosphere
