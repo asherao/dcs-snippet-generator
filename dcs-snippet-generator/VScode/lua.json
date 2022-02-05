@@ -313,5 +313,107 @@
       "$0"
     ],
     "description": "Returns nothing. Creates a VoiceChat room for players to join and interact with each other in a multiplayer mission. Side for which the voice room is available to players. VoiceChat.Side = {NEUTRAL = 0,RED = 1,BLUE = 2,ALL = 3}. The type of room that is created (optional).VoiceChat.RoomType = {PERSISTENT = 0,MULTICREW = 1,MANAGEABLE = 2}"
+  },
+  "timer": {
+    "prefix": "timer",
+    "body": [
+      "timer"
+    ],
+    "description": " The timer singleton has two important uses. 1. Return the mission time. 2. To schedule functions."
+  },
+  "timer.getTime": {
+    "prefix": "timer.getTime",
+    "body": [
+      "timer.getTime()",
+      "$0"
+    ],
+    "description": "Returns time. Returns the model time in seconds to 3 decimal places. This counts time once the simulator loads. So if a mission is paused, the time this function returns still moves forward."
+  },
+  "timer.getAbsTime": {
+    "prefix": "timer.getAbsTime",
+    "body": [
+      "timer.getAbsTime()",
+      "$0"
+    ],
+    "description": "Returns time. Returns the mission time in seconds. It is relative compared to the mission start time. The default mission start time in the mission editor is Day 1: 12:00:00.In seconds this value is: 43200"
+  },
+  "timer.getTime0": {
+    "prefix": "timer.getTime0",
+    "body": [
+      "timer.getTime0()",
+      "$0"
+    ],
+    "description": "Returns time. Returns the mission start time in seconds. Can be used with timer.getAbsTime() to see how much time has passed in the mission."
+  },
+  "timer.scheduleFunction": {
+    "prefix": "timer.scheduleFunction",
+    "body": [
+      "timer.scheduleFunction(${1:function functionToCall , functionArgs anyFunctionArguement , time modelTime})",
+      "$0"
+    ],
+    "description": "Returns functionId. Schedules a function to run at a time in the future. This is a very powerful function. The function that is called is expected to return nil or a number which will indicate the next time the function will be rescheduled. Use the second argument in that function to retrieve the current time and add the desired amount of delay(expressed in seconds)"
+  },
+  "timer.removeFunction": {
+    "prefix": "timer.removeFunction",
+    "body": [
+      "timer.removeFunction(${1:number functionId})",
+      "$0"
+    ],
+    "description": "Returns function. Removes a scheduled function as defined by the functionId from executing. Essentially will \"destroy\" the function."
+  },
+  "timer.setFunctionTime": {
+    "prefix": "timer.setFunctionTime",
+    "body": [
+      "timer.setFunctionTime(${1:number functionId , time modelTime})",
+      "$0"
+    ],
+    "description": "Returns function. Re-Schedules an already scheduled function to run at a different time in the future."
+  },
+  "world": {
+    "prefix": "world",
+    "body": [
+      "world"
+    ],
+    "description": "The world singleton contains functions centered around two different but extremely useful functions. 1. Events and event handlers are all governed within world. 2. A number of functions to get information about the game world."
+  },
+  "world.addEventHandler": {
+    "prefix": "world.addEventHandler",
+    "body": [
+      "world.addEventHandler(${1:EventHandler handler})",
+      "$0"
+    ],
+    "description": "Returns function. Adds a function as an event handler that executes whenever a simulator event occurs. The most common uses of event handlers are to track statistics of units within a given scenario and to execute code based on certain events occurring. Handlers are passed event tables which contains numerous data regarding the event. For examples of the event tables returned, reference the event page on the wiki to get more information regarding the event."
+  },
+  "world.removeEventHandler": {
+    "prefix": "world.removeEventHandler",
+    "body": [
+      "world.removeEventHandler(${1:EventHandler handler})",
+      "$0"
+    ],
+    "description": "Returns function. Removes the specified event handler from handling events. Use this when an event handler has outlived its usefulness."
+  },
+  "world.getPlayer": {
+    "prefix": "world.getPlayer",
+    "body": [
+      "world.getPlayer()",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of the single unit object in the game who's skill level is set as \"Player\". There is only a single player unit in a mission and in single player the user will always spawn into this unit automatically unless other client or Combined Arms slots are available."
+  },
+  "world.searchObjects": {
+    "prefix": "world.searchObjects",
+    "body": [
+      "world.searchObjects(${1:table/enum Object.Category , volume searchVolume , ObjectSearchHandler Handler , any data})",
+      "$0"
+    ],
+    "description": "Returns table. Searches a defined volume of 3d space for the specified objects within it and then can run function on each returned object. Object category is either a single enum or a table of enums that defines the types of objects that will be searched for Search volume is the defined 3d space that will be searched. Handler is the function that will be run on each object that is found. Any data is a variable that is passed to the handler function, it can be anything. Any data is optional."
+  },
+  "world.getMarkPanels": {
+    "prefix": "world.getMarkPanels",
+    "body": [
+      "world.getMarkPanels()",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of mark panels and drawn shapes indexed numerically that are present within the mission. Panel is designed with the mark points in mind, but still returns data for shapes created via markups."
   }
 }

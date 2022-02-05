@@ -62,7 +62,7 @@ namespace dcs_snippet_generator
                 
 
                 //DCS singleton voiceChat https://wiki.hoggitworld.com/view/DCS_singleton_voiceChat 
-                ("nothing","VoiceChat.createRoom","string roomName , number side , number roomType","Creates a VoiceChat room for players to join and interact with each other in a multiplayer mission. Side for which the voice room is available to players. VoiceChat.Side = {NEUTRAL = 0,RED = 1,BLUE = 2,ALL = 3}. The type of room that is created (optional).VoiceChat.RoomType = {PERSISTENT = 0,MULTICREW = 1,MANAGEABLE = 2}"),
+                //("nothing","VoiceChat.createRoom","string roomName , number side , number roomType","Creates a VoiceChat room for players to join and interact with each other in a multiplayer mission. Side for which the voice room is available to players. VoiceChat.Side = {NEUTRAL = 0,RED = 1,BLUE = 2,ALL = 3}. The type of room that is created (optional).VoiceChat.RoomType = {PERSISTENT = 0,MULTICREW = 1,MANAGEABLE = 2}"),
                
                 /*
                 ("xxx","xxx","xxx","xxx"),
@@ -71,6 +71,23 @@ namespace dcs_snippet_generator
                 ("xxx","xxx","xxx","xxx"),
                 ("xxx","xxx","xxx","xxx"),*/
 
+                
+                //DCS singleton timer https://wiki.hoggitworld.com/view/DCS_singleton_timer The timer singleton has two important uses. 1. Return the mission time. 2. To schedule functions.
+                ("time","timer.getTime","","Returns the model time in seconds to 3 decimal places. This counts time once the simulator loads. So if a mission is paused, the time this function returns still moves forward."),
+                ("time","timer.getAbsTime","","Returns the mission time in seconds. It is relative compared to the mission start time. The default mission start time in the mission editor is Day 1: 12:00:00.In seconds this value is: 43200"),
+                ("time","timer.getTime0","","Returns the mission start time in seconds. Can be used with timer.getAbsTime() to see how much time has passed in the mission."),
+                ("functionId","timer.scheduleFunction","function functionToCall , functionArgs anyFunctionArguement , time modelTime","Schedules a function to run at a time in the future. This is a very powerful function. The function that is called is expected to return nil or a number which will indicate the next time the function will be rescheduled. Use the second argument in that function to retrieve the current time and add the desired amount of delay(expressed in seconds)"),
+                ("function","timer.removeFunction","number functionId","Removes a scheduled function as defined by the functionId from executing. Essentially will \"destroy\" the function."),
+                ("function","timer.setFunctionTime","number functionId , time modelTime","Re-Schedules an already scheduled function to run at a different time in the future."),
+
+                // DCS singleton world https://wiki.hoggitworld.com/view/DCS_singleton_world The world singleton contains functions centered around two different but extremely useful functions. 1. Events and event handlers are all governed within world. 2. A number of functions to get information about the game world.
+                ("function","world.addEventHandler","EventHandler handler","Adds a function as an event handler that executes whenever a simulator event occurs. The most common uses of event handlers are to track statistics of units within a given scenario and to execute code based on certain events occurring. Handlers are passed event tables which contains numerous data regarding the event. For examples of the event tables returned, reference the event page on the wiki to get more information regarding the event."),
+                ("function","world.removeEventHandler","EventHandler handler","Removes the specified event handler from handling events. Use this when an event handler has outlived its usefulness."),
+                ("table","world.getPlayer","","Returns a table of the single unit object in the game who's skill level is set as \"Player\". There is only a single player unit in a mission and in single player the user will always spawn into this unit automatically unless other client or Combined Arms slots are available."),
+                ("table","world.searchObjects","table/enum Object.Category , volume searchVolume , ObjectSearchHandler Handler , any data","Searches a defined volume of 3d space for the specified objects within it and then can run function on each returned object. Object category is either a single enum or a table of enums that defines the types of objects that will be searched for Search volume is the defined 3d space that will be searched. Handler is the function that will be run on each object that is found. Any data is a variable that is passed to the handler function, it can be anything. Any data is optional."),
+                ("table","world.getMarkPanels","","Returns a table of mark panels and drawn shapes indexed numerically that are present within the mission. Panel is designed with the mark points in mind, but still returns data for shapes created via markups."),
+
+                /*
                 //TODO: below
                 // DCS singleton missionCommands https://wiki.hoggitworld.com/view/DCS_singleton_missionCommands The missionCommands singleton allows for greater access and flexibility of use for the F10 Other radio menu. Added commands can contain sub-menus and directly call lua functions.
                 ("xxx","missionCommands.addCommand","xxx","xxx"),
@@ -97,21 +114,6 @@ namespace dcs_snippet_generator
                 ("xxx","net.lua2json","xxx","xxx"),
                 ("xxx","net.json2lua","xxx","xxx"),
                 ("xxx","net.dostring_in","xxx","xxx"),
-
-                //DCS singleton timer https://wiki.hoggitworld.com/view/DCS_singleton_timer The timer singleton has two important uses. 1. Return the mission time. 2. To schedule functions.
-                ("xxx","timer.getTime","xxx","xxx"),
-                ("xxx","timer.getAbsTime","xxx","xxx"),
-                ("xxx","timer.getTime0","xxx","xxx"),
-                ("xxx","timer.scheduleFunction","xxx","xxx"),
-                ("xxx","timer.removeFunction","xxx","xxx"),
-                ("xxx","timer.setFunctionTime","xxx","xxx"),
-
-                // DCS singleton world https://wiki.hoggitworld.com/view/DCS_singleton_world The world singleton contains functions centered around two different but extremely useful functions. 1. Events and event handlers are all governed within world. 2. A number of functions to get information about the game world.
-                ("xxx","world.addEventHandler","xxx","xxx"),
-                ("xxx","world.removeEventHandler","xxx","xxx"),
-                ("xxx","world.getPlayer","xxx","xxx"),
-                ("xxx","world.searchObjects","xxx","xxx"),
-                ("xxx","world.getMarkPanels","xxx","xxx"),
 
                 //DCS singleton trigger https://wiki.hoggitworld.com/view/DCS_singleton_trigger The trigger singleton contains a number of functions that mimic actions and conditions found within the mission editor triggers. As a result these functions provide an easy way to interface with triggers setup within the mission editor. Additionally a few trigger functions act as a gateway between mission editor triggers and related scripting functions.
                 ("xxx","trigger.action.ctfColorTag","xxx","xxx"),
@@ -168,7 +170,7 @@ namespace dcs_snippet_generator
                 ("xxx","trigger.action.setGroupAIOff","xxx","xxx"),
                 ("xxx","trigger.action.groupStopMoving","xxx","xxx"),
                 ("xxx","trigger.action.groupContinueMoving","xxx","xxx"),
-
+                */
             };
 
 
