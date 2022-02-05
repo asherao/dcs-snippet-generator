@@ -298,5 +298,20 @@
       "$0"
     ],
     "description": "Returns table. Returns a table of points along a that define a route from a starting point to a destination point. Returned table is a table of vec2 points indexed numerically from starting point to destination. Table can return a high number of points over a relatively short route. So expect to iterate through a large number of values. Roadtype can be 'railroads' or 'roads' NOTE!!! A bug exists where the value for railroads is actually 'rails'.This is different from the sister function getClosestPointOnRoads"
+  },
+  "VoiceChat": {
+    "prefix": "VoiceChat",
+    "body": [
+      "VoiceChat"
+    ],
+    "description": "The voice chat singleton is a means of creating customized voice chat rooms for players to interact with each other in multiplayer."
+  },
+  "VoiceChat.createRoom": {
+    "prefix": "VoiceChat.createRoom",
+    "body": [
+      "VoiceChat.createRoom(${1:string roomName , number side , number roomType})",
+      "$0"
+    ],
+    "description": "Returns nothing. Creates a VoiceChat room for players to join and interact with each other in a multiplayer mission. Side for which the voice room is available to players. VoiceChat.Side = {NEUTRAL = 0,RED = 1,BLUE = 2,ALL = 3}. The type of room that is created (optional).VoiceChat.RoomType = {PERSISTENT = 0,MULTICREW = 1,MANAGEABLE = 2}"
   }
 }
