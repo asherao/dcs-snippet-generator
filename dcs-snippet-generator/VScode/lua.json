@@ -1,0 +1,302 @@
+{
+  // Place your snippets for lua here. Each snippet is defined under a snippet name and has a prefix, body and 
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+
+  // C:Users/<ProfileName>/AppData/Roaming/Code/User/snippets/lua.json
+
+  "atmosphere": {
+    "prefix": "atmosphere",
+    "body": [
+      "atmosphere."
+    ],
+    "description": "atmosphere is a singleton whose functions return atmospheric data about the mission. Currently limited only to wind data."
+  },
+  "atmosphere.getWind": {
+    "prefix": "atmosphere.getWind",
+    "body": [
+      "atmosphere.getWind(${1:table vec3 })",
+      "$0"
+    ],
+    "description": "Returns vec3. Returns a velocity vector of the wind at a specified point"
+  },
+  "atmosphere.getWindWithTurbulence": {
+    "prefix": "atmosphere.getWindWithTurbulence",
+    "body": [
+      "atmosphere.getWindWithTurbulence(${1:table vec3 })",
+      "$0"
+    ],
+    "description": "Returns vec3. Returns a velocity vector of the wind at a specified point, this time factoring turbulence into the equation."
+  },
+  "atmosphere.getTemperatureAndPressure": {
+    "prefix": "atmosphere.getTemperatureAndPressure",
+    "body": [
+      "atmosphere.getTemperatureAndPressure(${1:table vec3 })",
+      "$0"
+    ],
+    "description": "Returns number, number. Returns the temperature and pressure at a given point in 3d space. Temperature is returned in Kelvins Pressure is returned in Pascals"
+  },
+  "coalition": {
+    "prefix": "coalition",
+    "body": [
+      "coalition"
+    ],
+    "description": "The coalition singleton contains functions that gets information on the all of the units within the mission. It also has two of the most powerful functions that are capable of spawning groups and static objects into the mission."
+  },
+  "coalition.addGroup": {
+    "prefix": "coalition.addGroup",
+    "body": [
+      "coalition.addGroup(${1:enum countryId , enum groupCategory , table groupData})",
+      "$0"
+    ],
+    "description": "Returns Group. Dynamically spawns a group of the specified category for the specified country. Group data table is in the same format as created by the mission editor. See country page and group class page for the list of countries by id and group categories. The coalition of the group is defined by the coalition its country belongs to. If the group or any unit within shares a name of an existing group or unit, the existing group or unit will be destroyed when the new group is created. Function can NOT spawn new aircraft with a skill level of \"client\". However in single player a group can be spawned with the skill level of \"Player\". When this occurs the existing player aircraft will be destroyed. If no groupId or unitId is specified or the Ids are shared with existing groups or units, a new Id will be created for the new group."
+  },
+  "coalition.addStaticObject": {
+    "prefix": "coalition.addStaticObject",
+    "body": [
+      "coalition.addStaticObject(${1:enum countryId , table groupData})",
+      "$0"
+    ],
+    "description": "Returns Static Object.  Dynamically spawns a static object belonging to the specified country into the mission. This function follows the same rules as coalition.addGroup except for the object table not perfectly matching the format of a static object as seen in the mission file. - Static Objects name cannot be shared with an existing object, if it is the existing object will be destroyed on the spawning of the new object. - If unitId is not specified or matches an existing object, a new Id will be generated. - Coalition of the object is defined based on the country the object is spawning to."
+  },
+  "coalition.getGroups": {
+    "prefix": "coalition.getGroups",
+    "body": [
+      "coalition.getGroups(${1:enum coalitionId , enum GroupCategory})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of group objects belonging to the specified coalition. If the groupCategory enumerator is provided the table will only contain groups that belong to the specified category. If this optional variable is not provided, all group types will be returned. See here for the list of possible group categories."
+  },
+  "coalition.getStaticObjects": {
+    "prefix": "coalition.getStaticObjects",
+    "body": [
+      "coalition.getStaticObjects(${1:enum coalitionId})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of static objects belonging to the specified coalition."
+  },
+  "coalition.getAirbases": {
+    "prefix": "coalition.getAirbases",
+    "body": [
+      "coalition.getAirbases(${1:enum coalitionId})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of airbase objects belonging to the specified coalition. Objects can be ships, static objects(FARP), or airbases on the map. When the function is run as world.getAirbases() no input values required, and the function returns all airbases, ships, and farps on the map."
+  },
+  "coalition.getPlayers": {
+    "prefix": "coalition.getPlayers",
+    "body": [
+      "coalition.getPlayers(${1:enum coalitionId})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of unit objects that are currently occupied by players. Function is useful in multiplayer to easily filter client aircraft from everything else."
+  },
+  "coalition.getServiceProviders": {
+    "prefix": "coalition.getServiceProviders",
+    "body": [
+      "coalition.getServiceProviders(${1:enum coalitionId , enum coalition.service})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of unit objects that provide a given service to player controlled aircraft. Services are ATC, AWACS, TANKER, and FAC."
+  },
+  "coalition.addRefPoints": {
+    "prefix": "coalition.addRefPoints",
+    "body": [
+      "coalition.addRefPoints(${1:enum coalitionId , table refPoint})",
+      "$0"
+    ],
+    "description": "Returns function. Creates a new reference point belonging to the specified coalition. Reference points are used by JTACs."
+  },
+  "coalition.getRefPoints": {
+    "prefix": "coalition.getRefPoints",
+    "body": [
+      "coalition.getRefPoints(${1:enum coalitionId})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of reference points as defined by the mission editor or added via scripting. Reference points are used by JTACs."
+  },
+  "coalition.getMainRefPoint": {
+    "prefix": "coalition.getMainRefPoint",
+    "body": [
+      "coalition.getMainRefPoint(${1:enum coalitionId})",
+      "$0"
+    ],
+    "description": "Returns vec3. Returns the position of a coalitions \"bullseye\" as specified in the mission editor."
+  },
+  "coalition.getCountryCoalition": {
+    "prefix": "coalition.getCountryCoalition",
+    "body": [
+      "coalition.getCountryCoalition(${1:enum countryId})",
+      "$0"
+    ],
+    "description": "Returns enum coalitonId. Returns the enumarator coalitionId that a specified country belongs to."
+  },
+  "coord": {
+    "prefix": "coord",
+    "body": [
+      "coord",
+      "$0"
+    ],
+    "description": "The coord singleton contains functions used to convert coordinates between the game's XYZ, Longitude and Latitude, and the MGRS coordinate systems."
+  },
+  "coord.LLtoLO": {
+    "prefix": "coord.LLtoLO",
+    "body": [
+      "coord.LLtoLO(${1:GeoCoord latitude , GeoCoord longitude , number altitude})",
+      "$0"
+    ],
+    "description": "Returns vec3. Returns a point from latitude and longitude in the vec3 format. Altitude is optional."
+  },
+  "coord.LOtoLL": {
+    "prefix": "coord.LOtoLL",
+    "body": [
+      "coord.LOtoLL(${1:table vec3 })",
+      "$0"
+    ],
+    "description": "Returns latitude, longitude, altitude. Returns multiple values of a given vec3 point in latitude, longitude, and altitude."
+  },
+  "coord.LLtoMGRS": {
+    "prefix": "coord.LLtoMGRS",
+    "body": [
+      "coord.LLtoMGRS(${1:GeoCoord latitude , GeoCoord longitude})",
+      "$0"
+    ],
+    "description": "Returns MGRS table.     Returns an MGRS table from the latitude and longitude coordinates provided. Note that in order to get the MGRS coordinate from a vec3 you must first use coord.LOtoLL on it."
+  },
+  "coord.MGRStoLL": {
+    "prefix": "coord.MGRStoLL",
+    "body": [
+      "coord.MGRStoLL(${1:table MGRS})",
+      "$0"
+    ],
+    "description": "Returns latitude, longitude, altitude. Returns multiple values of a given in MGRS coordinates and converts it to latitude, longitude, and altitude."
+  },
+  "env": {
+    "prefix": "env",
+    "body": [
+      "env"
+    ],
+    "description": "env contains basic logging functions useful for debugging scripting commands. The input text is automatically added to dcs.log in your saved games folder, default location: C:\\Users\\<<userName>>\\Saved Games\\DCS\\Logs."
+  },
+  "env.info": {
+    "prefix": "env.info",
+    "body": [
+      "env.info(${1:string log , boolean showMessageBox})",
+      "$0"
+    ],
+    "description": "Returns function. Prints the passed string to the dcs.log with a prefix of 'info'. The optional variable defines whether or not a message box will pop up when the logging occurs. Bool is optional."
+  },
+  "env.warning": {
+    "prefix": "env.warning",
+    "body": [
+      "env.warning(${1:string log , boolean showMessageBox})",
+      "$0"
+    ],
+    "description": "Returns function. Prints the passed string to the dcs.log with a prefix of 'warning'. The optional variable defines whether or not a message box will pop up when the logging occurs. Bool is optional."
+  },
+  "env.error": {
+    "prefix": "env.error",
+    "body": [
+      "env.error(${1:string log , boolean showMessageBox})",
+      "$0"
+    ],
+    "description": "Returns function. Prints the passed string to the dcs.log with a prefix of 'error'. The optional variable defines whether or not a message box will pop up when the logging occurs. Bool is optional."
+  },
+  "env.setErrorMessageBoxEnabled": {
+    "prefix": "env.setErrorMessageBoxEnabled",
+    "body": [
+      "env.setErrorMessageBoxEnabled(${1:boolean toggle})",
+      "$0"
+    ],
+    "description": "Returns function. Sets the value for whether or not an error message box will be displayed if a lua error occurs. By default the error message box will appear."
+  },
+  "env.getValueDictByKey": {
+    "prefix": "env.getValueDictByKey",
+    "body": [
+      "env.getValueDictByKey(${1:string value})",
+      "$0"
+    ],
+    "description": "Returns string. Returns a string associated with the passed dictionary key value. If the key is not found within the miz the function will return the string that was passed."
+  },
+  "land": {
+    "prefix": "land",
+    "body": [
+      "land"
+    ],
+    "description": "The land singleton contains functions used to get information about the terrain geometry of a given map. Functions include getting data on the type and height of terrain at a specific points and raytracing functions."
+  },
+  "land.getHeight": {
+    "prefix": "land.getHeight",
+    "body": [
+      "land.getHeight(${1:table vec2})",
+      "$0"
+    ],
+    "description": "Returns number. Returns the distance from sea level (y-axis) of a given vec2 point."
+  },
+  "land.getSurfaceHeightWithSeabed": {
+    "prefix": "land.getSurfaceHeightWithSeabed",
+    "body": [
+      "land.getSurfaceHeightWithSeabed(${1:table vec2})",
+      "$0"
+    ],
+    "description": "Returns number, number. Returns the surface height and depth of a point. Useful for checking if the path is deep enough to support a given ship. Both values are positive. When checked over water at sea level the first value is always zero. When checked over water at altitude, for example the reservoir of the Inguri Dam, the first value is the corresponding altitude the water level is at."
+  },
+  "land.getSurfaceType": {
+    "prefix": "land.getSurfaceType",
+    "body": [
+      "land.getSurfaceType(${1:table vec2})",
+      "$0"
+    ],
+    "description": "Returns enum. Returns an enumerator for the surface type at a given point. Enumerator is as follows: LAND = 1. SHALLOW_WATER = 2. WATER = 3. ROAD = 4. RUNWAY = 5."
+  },
+  "land.isVisible": {
+    "prefix": "land.isVisible",
+    "body": [
+      "land.isVisible(${1:table origin , table destination})",
+      "$0"
+    ],
+    "description": "Returns boolean. xReturns the boolean value if there is an terrain intersection via drawing a virtual line from the origin to the destination. Used for determining line of sight.xx"
+  },
+  "land.getIP": {
+    "prefix": "land.getIP",
+    "body": [
+      "land.getIP(${1:table origin , table direction , number distance})",
+      "$0"
+    ],
+    "description": "Returns vec3. Returns an intercept point at which a ray drawn from the origin in the passed normalized direction for a specified distance. If no intersection found the function will return nil."
+  },
+  "land.profile": {
+    "prefix": "land.profile",
+    "body": [
+      "land.profile(${1:table vec3 , table vec3})",
+      "$0"
+    ],
+    "description": "Returns table of vec3. Returns a table of vectors that make up the profile of the land between the two passed points. The spacing and quantity of returned vectors is not entirely known to the author. Requires further testing."
+  },
+  "land.getClosestPointOnRoads": {
+    "prefix": "land.getClosestPointOnRoads",
+    "body": [
+      "land.getClosestPointOnRoads(${1:string roadType , number xCoord , number yCoord})",
+      "$0"
+    ],
+    "description": "Returns number, number. Returns a coordinate of the nearest road from the passed point. NOTE that this function does not use vec2 or vec3. It uses individual values representing a vec2 for x and y. Valid road type values: 'roads' and 'railroads'"
+  },
+  "land.findPathOnRoads": {
+    "prefix": "land.findPathOnRoads",
+    "body": [
+      "land.findPathOnRoads(${1:string roadType , number xCoord , number yCoord , number destX , number destY})",
+      "$0"
+    ],
+    "description": "Returns table. Returns a table of points along a that define a route from a starting point to a destination point. Returned table is a table of vec2 points indexed numerically from starting point to destination. Table can return a high number of points over a relatively short route. So expect to iterate through a large number of values. Roadtype can be 'railroads' or 'roads' NOTE!!! A bug exists where the value for railroads is actually 'rails'.This is different from the sister function getClosestPointOnRoads"
+  }
+}
