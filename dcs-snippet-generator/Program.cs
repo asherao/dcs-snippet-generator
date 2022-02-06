@@ -71,7 +71,7 @@ namespace dcs_snippet_generator
                 ("xxx","xxx","xxx","xxx"),
                 ("xxx","xxx","xxx","xxx"),*/
 
-                
+                /*
                 //DCS singleton timer https://wiki.hoggitworld.com/view/DCS_singleton_timer The timer singleton has two important uses. 1. Return the mission time. 2. To schedule functions.
                 ("time","timer.getTime","","Returns the model time in seconds to 3 decimal places. This counts time once the simulator loads. So if a mission is paused, the time this function returns still moves forward."),
                 ("time","timer.getAbsTime","","Returns the mission time in seconds. It is relative compared to the mission start time. The default mission start time in the mission editor is Day 1: 12:00:00.In seconds this value is: 43200"),
@@ -86,20 +86,23 @@ namespace dcs_snippet_generator
                 ("table","world.getPlayer","","Returns a table of the single unit object in the game who's skill level is set as \"Player\". There is only a single player unit in a mission and in single player the user will always spawn into this unit automatically unless other client or Combined Arms slots are available."),
                 ("table","world.searchObjects","table/enum Object.Category , volume searchVolume , ObjectSearchHandler Handler , any data","Searches a defined volume of 3d space for the specified objects within it and then can run function on each returned object. Object category is either a single enum or a table of enums that defines the types of objects that will be searched for Search volume is the defined 3d space that will be searched. Handler is the function that will be run on each object that is found. Any data is a variable that is passed to the handler function, it can be anything. Any data is optional."),
                 ("table","world.getMarkPanels","","Returns a table of mark panels and drawn shapes indexed numerically that are present within the mission. Panel is designed with the mark points in mind, but still returns data for shapes created via markups."),
+                */
 
                 /*
-                //TODO: below
                 // DCS singleton missionCommands https://wiki.hoggitworld.com/view/DCS_singleton_missionCommands The missionCommands singleton allows for greater access and flexibility of use for the F10 Other radio menu. Added commands can contain sub-menus and directly call lua functions.
-                ("xxx","missionCommands.addCommand","xxx","xxx"),
-                ("xxx","missionCommands.addSubMenu","xxx","xxx"),
-                ("xxx","missionCommands.removeItem","xxx","xxx"),
-                ("xxx","missionCommands.addCommandForCoalition","xxx","xxx"),
-                ("xxx","missionCommands.addSubMenuForCoalition","xxx","xxx"),
-                ("xxx","missionCommands.removeItemForCoalition","xxx","xxx"),
-                ("xxx","missionCommands.addCommandForGroup","xxx","xxx"),
-                ("xxx","missionCommands.addSubMenuForGroup","xxx","xxx"),
-                ("xxx","missionCommands.removeItemForGroup","xxx","xxx"),
-
+                ("table","missionCommands.addCommand","string name , table/nil path , function functionToRun , any anyArguement","Adds a command to the \"F10 Other\" radio menu allowing players to run specified scripting functions. Command is added for both teams. The string name is the text that will be displayed in the F10 Other menu and is also used in the function to remove the command from the menu. Path is an optional value that defines whether or not the command will be in a named submenu. FunctionToCall is the name of the function, with the optional argument value designating any passed values. The last argument is optional."),
+                ("table", "missionCommands.addSubMenu", "string name , table path", "Creates a submenu of a specified name for all players. Can be used to create nested sub menues. If the path is not specified, submenu is added to the root menu. The last arguement is optional."),
+                ("nothing", "missionCommands.removeItem", "table/nil path", "Removes the item of the specified path from the F10 radio menu for all. If the value is nil all items will be removed from the radio menu. If the path given is a submenu then all items nested within will be removed."),
+                ("table", "missionCommands.addCommandForCoalition", "enum coalition.side , string name , table/nil path , function functionToRun , any anyArguement", "Adds a command to the \"F10 Other\" radio menu allowing players to run specified scripting functions. Command is added for the specified coalition. The string name is the text that will be displayed in the F10 Other menu and is also used in the function to remove the command from the menu. Path is an optional value that defines whether or not the command will be in a named submenu. FunctionToCall is the name of the function, with the optional argument value designating any passed values. The last arguement is optional."),
+                ("table", "missionCommands.addSubMenuForCoalition", "enum coalition.side , string name , table path", "	Creates a submenu of a specified name for the specified coalition. Can be used to create nested sub menues. If the path is not specified, submenu is added to the root menu. The last arguement is optional."),
+                ("function", "missionCommands.removeItemForCoalition", "enum coalition.side , table/nil path", "Removes the item of the specified path from the F10 radio menu for the specified coalition. If the value is nil all items will be removed from the radio menu."),
+                ("table", "missionCommands.addCommandForGroup", "number groupId , string name , table/nil path , function functionToRun , any anyArguement", "Adds a command to the \"F10 Other\" radio menu allowing players to run specified scripting functions. Command is added for the specified groupId. The string name is the text that will be displayed in the F10 Other menu and is also used in the function to remove the command from the menu. Path is an optional value that defines whether or not the command will be in a named submenu. FunctionToCall is the name of the function, with the optional argument value designating any passed values. The last arguement is optional."),
+                ("table", "missionCommands.addSubMenuForGroup", "number groupId , string name , table path", "Creates a submenu of a specified name for the specified group. Can be used to create nested sub menues. If the path is not specified, submenu is added to the root menu. The last arguement is optional."),
+                ("function", "missionCommands.removeItemForGroup", "number groupId , table/nil path", "Removes the item of the specified path from the F10 radio menu for the specified group. If the value is nil all items will be removed from the radio menu."),
+             */
+                //TODO: below
+                
+                 
                 //DCS singleton net https://wiki.hoggitworld.com/view/DCS_singleton_net The net singleton are a number of functions from the network API that work in the mission scripting environment. Notably for mission scripting purposes there is now a way to send chat, check if players are in Combined Arms slots, kick people from the server, and move players to certain slots.
                 ("xxx","net.send_chat","xxx","xxx"),
                 ("xxx","net.send_chat_to","xxx","xxx"),
@@ -170,7 +173,7 @@ namespace dcs_snippet_generator
                 ("xxx","trigger.action.setGroupAIOff","xxx","xxx"),
                 ("xxx","trigger.action.groupStopMoving","xxx","xxx"),
                 ("xxx","trigger.action.groupContinueMoving","xxx","xxx"),
-                */
+               
             };
 
 
