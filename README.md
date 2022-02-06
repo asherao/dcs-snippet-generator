@@ -10,7 +10,7 @@ Creates snippets to use in VScode as a DCS lua environment.
   - World
   - Timer
   - VoiceChat
-  - MIssionCommands
+  - MissionCommands
 
 ## Instructions
 Put dcs-snippet-generator/dcs-snippet-generator/VScode/lua.json in C:Users/ProfileName/AppData/Roaming/Code/User/snippets/lua.json
